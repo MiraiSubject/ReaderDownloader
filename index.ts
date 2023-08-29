@@ -17,7 +17,7 @@ const merger = new PDFMerger();
 async function downloadPdf(pages: number) {
 
     for (let i = 1; i <= pages; i++) {
-        const response = await axios.get(`https://www.readeronline.leidenuniv.nl/reader/www/nodes/nodes/get_pdf?reader_id=${readerId}&reader_code=${readerCode}&page_number=${i}`,
+        const response = await axios.get(`https://readeronline.leidenuniv.nl/reader/nodes/nodes/get_pdf?reader_id=${readerId}&reader_code=${readerCode}&page_number=${i}`,
             {
                 headers: {
                     'Cookie': cookie,
