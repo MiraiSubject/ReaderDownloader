@@ -27,6 +27,12 @@ export const createProgressStore = () => {
             status: 'idle',
             error: null,
         }),
+        done: () => set({
+            progress: 0,
+            total: 0,
+            status: 'done',
+            error: null,
+        }),
         error: (error: Error) => set({
             progress: 0,
             total: 0,
