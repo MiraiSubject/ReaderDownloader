@@ -3,6 +3,7 @@
 // I don't really care about the Licensing but it's like open source so might as well add it
 
 import { PDFDocument } from 'pdf-lib';
+import { Buffer } from 'buffer';
 
 async function getHTML(cookie: string, readerId: number): Promise<string> {
     const res = await fetch(`https://readeronline.leidenuniv.nl/reader/nodes/index/${readerId}`, {
@@ -47,7 +48,7 @@ export async function downloadPdf(cookie: string, readerId: number): Promise<Uin
         const pages = await getPagesFromHTML(html);
         const readerCode = await getReaderCodeFromHTML(html);
         const pdf = await PDFDocument.create();
-        for (let i = 1; i <= pages; i++) {
+        for (let i = 1; i <= 2; i++) {
             console.log("Fetching page ", i);
             const res = await fetch(`https://readeronline.leidenuniv.nl/reader/nodes/nodes/get_pdf?reader_id=${readerId}&reader_code=${readerCode}&page_number=${i}`,
                 {
