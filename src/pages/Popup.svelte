@@ -48,7 +48,7 @@
   }
 </script>
 
-<div class="bg-[#001158] h-full">
+<div class="bg-[#001158] text-sm h-full">
   <div class="flex justify-center flex-col h-full gap-2 p-4 text-white">
     <h1 class="text-3xl font-bold">Reader Downloader</h1>
     {#if readerId}
@@ -68,11 +68,11 @@
         to download it.
       </p>
       <a
-        class="bg-indigo-900 px-4 py-2 rounded-md"
-        href="https://readeronline.leidenuniv.nl/"
+        class="bg-indigo-900 px-4 py-2 rounded-md text-center"
+        href="https://readeronline.leidenuniv.nl/reader/readers/index"
         target="_blank"
         rel="noopener noreferrer"
-        >Open Leiden University Reader Online in a new tab</a
+        >Go to your Reader Online digital library</a
       >
     {/if}
     {#if $progress.status === "running"}
