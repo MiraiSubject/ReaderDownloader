@@ -55,7 +55,7 @@
       <p class="text-xl">Detected a Reader on the page! ({readerId})</p>
       <p>Press the download button to save it to your computer as a PDF.</p>
       <button
-        class="bg-green-700 px-4 py-2 w-full rounded-sm shadow-lg hover:bg-green-500 transition-all disabled:opacity-50 {$progress.status ===
+        class="bg-green-700 px-4 py-2 w-full rounded-md shadow-lg hover:bg-green-500 transition-all disabled:opacity-50 {$progress.status ===
         'running'
           ? 'cursor-progress'
           : ''}"
@@ -64,11 +64,11 @@
       >
     {:else}
       <p>
-        Navigate to a page that has a reader displayed to be able to download
-        it.
+        Navigate to one of your readers where you can the first page to be able
+        to download it.
       </p>
       <a
-        class="bg-indigo-900 px-4 py-2 rounded-xl"
+        class="bg-indigo-900 px-4 py-2 rounded-md"
         href="https://readeronline.leidenuniv.nl/"
         target="_blank"
         rel="noopener noreferrer"
@@ -81,7 +81,7 @@
         extension. (page {$progress.progress} / {$progress.total})
       </p>
       <progress
-        class="w-full cursor-progress progress-unfilled:bg-slate-300 progress-filled:bg-pink-500 transition-all progress-unfilled:rounded-xl progress-filled:rounded-xl"
+        class="w-full cursor-progress progress-unfilled:bg-slate-300 progress-filled:bg-green-500 transition-all progress-unfilled:rounded-xl progress-filled:rounded-xl"
         value={$progress.progress}
         max={$progress.total}
       ></progress>
@@ -93,6 +93,18 @@
       <p>Something went wrong. Please try again later.</p>
       <p>Detailed error message: {$progress.error}</p>
     {/if}
+    <p class="border-t border-gray-400 text-gray-300">
+      Built by <a
+        href="https://github.com/miraisubject"
+        class="underline"
+        target="_blank"
+        rel="noopener noreferrer">Mirai</a
+      >. Source code available on <a
+        href="https://github.com/MiraiSubject/ReaderDownloader"
+        class="underline"
+        target="_blank"
+        rel="noopener noreferrer">GitHub</a>.
+    </p>
   </div>
 </div>
 
