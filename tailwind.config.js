@@ -13,7 +13,7 @@ export default {
     // adds .progress-bar-[color] and .progress-value-[color] classes
     plugin(function ({addVariant}) {
       addVariant('progress-unfilled', ['&::-webkit-progress-bar', '&']);
-      addVariant('progress-filled', ['&::-webkit-progress-value', '&::-moz-progress-bar', '&']);
+      addVariant('progress-filled', ['&::-webkit-progress-value', '&::-moz-progress-bar']); 
   })
   ],
 }
