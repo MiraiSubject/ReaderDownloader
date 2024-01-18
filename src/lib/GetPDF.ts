@@ -1,7 +1,5 @@
 // Copyright (c) MiraiSubject. Licensed under the MIT Licence.
 // See the LICENCE file in the repository root for full licence text.
-// I don't really care about the Licensing but it's like open source so might as well add it
-
 import { PDFDocument } from 'pdf-lib';
 import { Buffer } from 'buffer';
 import { progress } from '.';
@@ -18,7 +16,6 @@ async function getHTML(cookie: string, readerId: number): Promise<string> {
     return html;
 }
 
-
 async function getPagesFromHTML(html: string): Promise<number> {
     const regex = /<span id="page_count" data-value="(\d+)">/;
     const match = html.match(regex);
@@ -29,7 +26,6 @@ async function getPagesFromHTML(html: string): Promise<number> {
         throw new Error('Failed to extract page count');
     }
 }
-
 
 async function getReaderCodeFromHTML(html: string): Promise<string> {
     const regex = /<input type="hidden" id="reader_code" value="([^"]+)">/;
@@ -42,7 +38,6 @@ async function getReaderCodeFromHTML(html: string): Promise<string> {
     }
 }
 
-
 export async function downloadPdf(cookie: string, readerId: number) {
     try {
         const html = await getHTML(cookie, readerId);
@@ -51,7 +46,6 @@ export async function downloadPdf(cookie: string, readerId: number) {
         const pdf = await PDFDocument.create();
         progress.start(pages);
         for (let i = 1; i <= pages; i++) {
-            console.log("Fetching page ", i);
             progress.increment();
             const res = await fetch(`https://readeronline.leidenuniv.nl/reader/nodes/nodes/get_pdf?reader_id=${readerId}&reader_code=${readerCode}&page_number=${i}`,
                 {
@@ -73,8 +67,7 @@ export async function downloadPdf(cookie: string, readerId: number) {
             pdf: await pdf.save()
         }
     } catch (e) {
-        const error = e as Error;
-        progress.error(error);
+        progress.error(e as Error);
         throw e;
     }
 }
