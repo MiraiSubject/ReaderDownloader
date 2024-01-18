@@ -2,11 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 // I don't really care about the Licensing but it's like open source so might as well add it
 
-import * as fs from 'fs';
 import { PDFDocument } from 'pdf-lib';
 
-async function getHTML(readerId: number): Promise<string> {
-    const cookie = await fs.promises.readFile('cookie', 'utf-8');
+async function getHTML(cookie: string, readerId: number): Promise<string> {
     const res = await fetch(`https://readeronline.leidenuniv.nl/reader/nodes/index/${readerId}`, {
         headers: {
             'Cookie': cookie,
@@ -43,15 +41,13 @@ async function getReaderCodeFromHTML(html: string): Promise<string> {
 }
 
 
-async function downloadPdf(readerId: number): Promise<Uint8Array> {
-    const cookie = await fs.promises.readFile('cookie', 'utf-8');
-
+export async function downloadPdf(cookie: string, readerId: number): Promise<Uint8Array> {
     try {
-        const html = await getHTML(readerId);
+        const html = await getHTML(cookie, readerId);
         const pages = await getPagesFromHTML(html);
         const readerCode = await getReaderCodeFromHTML(html);
         const pdf = await PDFDocument.create();
-        for (let i = 1; i <= 2; i++) {
+        for (let i = 1; i <= pages; i++) {
             console.log("Fetching page ", i);
             const res = await fetch(`https://readeronline.leidenuniv.nl/reader/nodes/nodes/get_pdf?reader_id=${readerId}&reader_code=${readerCode}&page_number=${i}`,
                 {
@@ -69,8 +65,6 @@ async function downloadPdf(readerId: number): Promise<Uint8Array> {
         }
         return await pdf.save();
     } catch (e) {
-        console.error(e);
+        throw e;
     }
 }
-
-downloadPdf(1339)
