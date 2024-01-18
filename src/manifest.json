@@ -1,4 +1,6 @@
 {
+  "name": "LUReaderDownloader",
+  "description": "Download readers you own as PDFs from Leiden University Reader Online",
   "{{chrome}}.manifest_version": 3,
   "{{firefox}}.manifest_version": 2,
   "icons": {
@@ -19,8 +21,7 @@
   "permissions": [
     "*://*.readeronline.leidenuniv.nl/",
     "cookies",
-    "storage",
-    "tabs",
+    "activeTab",
     "downloads"
   ],
   "background": {
