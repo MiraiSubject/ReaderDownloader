@@ -4,6 +4,7 @@
 
 import { PDFDocument } from 'pdf-lib';
 import { Buffer } from 'buffer';
+import { progress } from '.';
 
 async function getHTML(cookie: string, readerId: number): Promise<string> {
     const res = await fetch(`https://readeronline.leidenuniv.nl/reader/nodes/index/${readerId}`, {
@@ -48,8 +49,10 @@ export async function downloadPdf(cookie: string, readerId: number) {
         const pages = await getPagesFromHTML(html);
         const readerCode = await getReaderCodeFromHTML(html);
         const pdf = await PDFDocument.create();
-        for (let i = 1; i <= 2; i++) {
+        progress.start(pages);
+        for (let i = 1; i <= pages; i++) {
             console.log("Fetching page ", i);
+            progress.increment();
             const res = await fetch(`https://readeronline.leidenuniv.nl/reader/nodes/nodes/get_pdf?reader_id=${readerId}&reader_code=${readerCode}&page_number=${i}`,
                 {
                     headers: {
@@ -70,6 +73,8 @@ export async function downloadPdf(cookie: string, readerId: number) {
             pdf: await pdf.save()
         }
     } catch (e) {
+        const error = e as Error;
+        progress.error(error);
         throw e;
     }
 }
