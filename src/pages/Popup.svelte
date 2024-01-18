@@ -8,9 +8,6 @@
   let cookieString = ""
 
   onMount(async () => {
-    // getTab = await browser.tabs.query({ active: true, currentWindow: true });
-    // console.log(getTab)
-
     const cookieOpts = {
       domain: ".readeronline.leidenuniv.nl",
     };
@@ -26,11 +23,11 @@
     if (!tab) return;
     if (!tab.id) return;
 
-    const file = await downloadPdf(cookieString, readerId)
-    let output = URL.createObjectURL(new Blob([file], { type: "application/pdf" }));
+    const reader = await downloadPdf(cookieString, readerId)
+    let output = URL.createObjectURL(new Blob([reader.pdf], { type: "application/pdf" }));
     await browser.downloads.download({
       url: output,
-      filename: ".pdf",
+      filename: `Reader${reader.id}_${reader.code}_LU.pdf`,
     });
   
     URL.revokeObjectURL(output);

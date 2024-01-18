@@ -42,7 +42,7 @@ async function getReaderCodeFromHTML(html: string): Promise<string> {
 }
 
 
-export async function downloadPdf(cookie: string, readerId: number): Promise<Uint8Array> {
+export async function downloadPdf(cookie: string, readerId: number) {
     try {
         const html = await getHTML(cookie, readerId);
         const pages = await getPagesFromHTML(html);
@@ -64,7 +64,11 @@ export async function downloadPdf(cookie: string, readerId: number): Promise<Uin
             const copiedPages = await pdf.copyPages(pdfDoc, pdfDoc.getPageIndices());
             copiedPages.forEach((page) => pdf.addPage(page));
         }
-        return await pdf.save();
+        return {
+            id: readerId,
+            code: readerCode,
+            pdf: await pdf.save()
+        }
     } catch (e) {
         throw e;
     }
