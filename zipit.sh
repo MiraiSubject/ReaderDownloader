@@ -4,7 +4,7 @@
 
 function zip_extension() {
     local browser=$1
-    (cd dist && zip -r ../extension-"$browser".zip .)
+    (cd dist && zip -r ../extension-"$browser".zip -x .DS_Store -x "__MACOSX" .)
 }
 
 pnpm build-firefox
