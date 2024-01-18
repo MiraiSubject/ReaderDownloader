@@ -19,6 +19,7 @@ export default defineConfig({
     svelte(),
     webExtension({
       manifest: generateManifest,
+      browser: process.env.TARGET || 'chrome',
       watchFilePaths: ["package.json", "manifest.json"],
     }),
   ],

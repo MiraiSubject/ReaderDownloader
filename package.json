@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build-chrome": "TARGET=chrome vite build",
+    "build-firefox": "TARGET=firefox vite build",
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "dependencies": {

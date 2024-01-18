@@ -17,6 +17,7 @@
     "*://*.readeronline.leidenuniv.nl/"
   ],
   "permissions": [
+    "*://*.readeronline.leidenuniv.nl/",
     "cookies",
     "storage",
     "tabs",
