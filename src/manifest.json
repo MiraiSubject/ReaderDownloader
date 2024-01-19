@@ -24,6 +24,11 @@
     "activeTab",
     "downloads"
   ],
+  "{{firefox}}.browser_specific_settings": {
+    "gecko": {
+      "update_url": "https://leidenreader.mirai.yt/firefox/updates.json"
+    }
+  },
   "background": {
     "{{chrome}}.service_worker": "src/background.ts",
     "{{firefox}}.scripts": [
