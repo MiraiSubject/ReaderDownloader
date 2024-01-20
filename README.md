@@ -3,7 +3,8 @@
 Easily download the PDF version of your purchased reader from Leiden Online Reader. I believe we should have access to our readers locally, digitally, but also offline without relying on the paper version.
 
 ## Download
-Soon.
+
+- [Firefox](https://github.com/MiraiSubject/ReaderDownloader/releases/latest/download/readerdownloader_firefox.xpi)
 
 ## Why?
 
