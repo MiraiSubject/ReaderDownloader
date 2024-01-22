@@ -5,6 +5,7 @@ Easily download the PDF version of your purchased reader from Leiden Online Read
 ## Download
 
 - [Firefox](https://github.com/MiraiSubject/ReaderDownloader/releases/latest/download/readerdownloader_firefox.xpi)
+- [Chrome](https://chromewebstore.google.com/detail/lureaderdownloader/cdkhbinafinpflnilehlgjmnebofkjcc)
 
 ## Why?
 
@@ -25,6 +26,8 @@ Here is what the code does:
 - The extension pulls every page from the reader into memory (fun fact every page is its own PDF file)
 - All the PDF files get combined into one big file.
 - The resulting PDF file gets saved by your browser.
+
+_Disclaimer: This extension is not affiliated with Leiden University and it may stop working at any time when they decide to change the way readers work. Ideally you should bother your course coordinators so they can bother the appropriate people to spend some resources to improve the situation. ONLY use this for creating a personal backup of your reader._
 
 All of this happens locally on your computer and there is no middle man that comes in between, so it is also safe.
 
